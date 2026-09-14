@@ -21,7 +21,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-body antialiased bg-cf-bg text-cf-ink" x-data="{ mobileNavOpen: false }">
+    <body class="font-body antialiased bg-cf-bg text-cf-ink">
 
         @php
             $navLinks = [
@@ -75,36 +75,34 @@
                         @endauth
                     </div>
 
-                    <button @click="mobileNavOpen = !mobileNavOpen" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-cf-muted hover:bg-cf-surface" aria-label="Ouvrir le menu">
-                        <i class="ti text-2xl" :class="mobileNavOpen ? 'ti-x' : 'ti-menu-2'"></i>
-                    </button>
+                    <div class="flex items-center gap-2 md:hidden">
+                        @isset($festivalActif)
+                            <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
+                               class="relative flex h-10 w-10 items-center justify-center rounded-full border border-cf-gold/30 bg-cf-gold/10 text-cf-gold"
+                               aria-label="Festival en cours : {{ $festivalActif->nom }}">
+                                <i class="ti ti-star-filled text-base"></i>
+                                <span class="absolute top-1.5 right-1.5 flex h-1.5 w-1.5">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
+                                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
+                                </span>
+                            </a>
+                        @endisset
+
+                        @auth
+                            <a href="{{ route(auth()->user()->dashboardRoute()) }}"
+                               class="flex h-10 w-10 items-center justify-center rounded-full bg-cf-gold text-cf-gold-ink"
+                               aria-label="Mon espace">
+                                <i class="ti ti-layout-dashboard text-base"></i>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}"
+                               class="flex h-10 w-10 items-center justify-center rounded-full bg-cf-surface-2 border border-cf-line text-cf-ink"
+                               aria-label="Espace salle — connexion">
+                                <i class="ti ti-door text-base"></i>
+                            </a>
+                        @endauth
+                    </div>
                 </div>
-            </div>
-
-            {{-- Menu mobile (auth + festival — la navigation principale est en barre basse) --}}
-            <div x-show="mobileNavOpen" x-cloak @click.outside="mobileNavOpen = false" class="md:hidden border-t border-cf-line bg-cf-bg">
-                <nav class="px-4 py-3 space-y-1">
-                    @isset($festivalActif)
-                        <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
-                           class="flex items-center gap-2 rounded-md border border-cf-gold/30 bg-cf-gold/10 px-3 py-2.5 text-sm font-semibold text-cf-gold">
-                            <span class="relative flex h-1.5 w-1.5 shrink-0">
-                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
-                                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
-                            </span>
-                            {{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}
-                        </a>
-                    @endisset
-
-                    @auth
-                        <a href="{{ route(auth()->user()->dashboardRoute()) }}" class="block rounded-md px-3 py-2 text-base font-medium text-cf-gold">
-                            <i class="ti ti-layout-dashboard"></i> Mon espace
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="block rounded-md px-3 py-2 text-base font-medium text-cf-gold">
-                            <i class="ti ti-door"></i> Espace salle
-                        </a>
-                    @endauth
-                </nav>
             </div>
         </header>
 
