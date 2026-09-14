@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRole::class,
         ]);
+
+        // L'app tourne derrière un reverse proxy (Nginx et/ou tunnel Cloudflare) qui
+        // termine le HTTPS — sans ceci, Laravel génère des URLs en http:// (assets,
+        // redirections) et le navigateur bloque le contenu mixte sur une page HTTPS.
+        $middleware->trustProxies(at: '*');
     })
     ->withSchedule(function (Schedule $schedule): void {
         $schedule->command('rappels:envoyer')->everyFifteenMinutes();
