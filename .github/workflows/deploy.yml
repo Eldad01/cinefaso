@@ -44,38 +44,17 @@ jobs:
           chmod 600 ~/.ssh/github-actions-cinefaso
           ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
 
-      # 6. Déployer sur le VPS
+      # 6. Synchroniser le script de déploiement (au cas où il aurait changé)
+      - name: Sync deploy script
+        run: |
+          scp -i ~/.ssh/github-actions-cinefaso -o StrictHostKeyChecking=no \
+            deploy-pull.sh \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/cinefaso/deploy-pull.sh
+          ssh -i ~/.ssh/github-actions-cinefaso ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+            "chmod +x /opt/cinefaso/deploy-pull.sh"
+
+      # 7. Déployer sur le VPS
       - name: Deploy to VPS
         run: |
-          ssh -i ~/.ssh/github-actions-cinefaso \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-
-            cd /opt/cinefaso
-
-            echo "=== Téléchargement de la nouvelle image ==="
-            docker pull eldad01/cinefaso:latest
-
-            echo "=== Redémarrage de l'application ==="
-            docker compose -f docker-compose.prod.yml up -d
-
-            echo "=== Migrations Laravel ==="
-            docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
-
-            echo "=== Lien de stockage public ==="
-            docker compose -f docker-compose.prod.yml exec -T app php artisan storage:link --force
-
-            echo "=== Nettoyage du cache ==="
-            docker compose -f docker-compose.prod.yml exec -T app php artisan optimize:clear
-
-            echo "=== Recréation des caches ==="
-            docker compose -f docker-compose.prod.yml exec -T app php artisan config:cache
-            docker compose -f docker-compose.prod.yml exec -T app php artisan route:cache
-            docker compose -f docker-compose.prod.yml exec -T app php artisan view:cache
-
-            echo "=== Nettoyage des anciennes images ==="
-            docker image prune -f
-
-            echo "=== État des conteneurs ==="
-            docker compose -f docker-compose.prod.yml ps
-
-            EOF
+          ssh -i ~/.ssh/github-actions-cinefaso ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+            "/opt/cinefaso/deploy-pull.sh"
