@@ -18,7 +18,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-body text-gray-900 antialiased">
+    <body class="font-body text-cf-ink antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cf-bg">
             <div>
                 <a href="/" class="flex items-center gap-2">
@@ -29,7 +29,7 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-2xl overflow-hidden sm:rounded-xl">
+            <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-cf-surface border border-cf-line shadow-2xl overflow-hidden sm:rounded-xl">
                 {{ $slot }}
             </div>
         </div>
