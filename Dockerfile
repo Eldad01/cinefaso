@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY resources ./resources
-COPY vite.config.js ./
+COPY vite.config.js tailwind.config.js postcss.config.js ./
 RUN npm run build
 
 FROM composer:2 AS vendor
