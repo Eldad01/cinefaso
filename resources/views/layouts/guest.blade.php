@@ -21,14 +21,22 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-body text-cf-ink antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cf-bg">
-            <div>
+        <div class="min-h-screen relative overflow-hidden flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cf-bg">
+            {{-- Fond vivant : aplats de couleur diffus, dans la palette de la marque --}}
+            <div class="pointer-events-none absolute inset-0 overflow-hidden">
+                <div class="absolute -top-28 -left-24 h-80 w-80 rounded-full opacity-50 blur-[90px]" style="background:#164E4A"></div>
+                <div class="absolute top-1/4 -right-24 h-96 w-96 rounded-full opacity-40 blur-[100px]" style="background:#6B3A2E"></div>
+                <div class="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full opacity-40 blur-[100px]" style="background:#3B2145"></div>
+                <div class="absolute bottom-0 right-1/3 h-64 w-64 rounded-full opacity-30 blur-[90px] bg-cf-gold"></div>
+            </div>
+
+            <div class="relative">
                 <a href="/">
                     <img src="{{ asset('images/logo-full.webp') }}" alt="CinéFaso" class="h-32 w-auto">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-cf-surface border border-cf-line shadow-2xl overflow-hidden sm:rounded-xl">
+            <div class="relative w-full sm:max-w-md mt-6 px-6 py-6 bg-cf-surface/95 backdrop-blur-sm border border-cf-line shadow-2xl overflow-hidden sm:rounded-xl">
                 {{ $slot }}
             </div>
         </div>
