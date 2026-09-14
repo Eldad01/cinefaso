@@ -69,7 +69,7 @@
                             </a>
                         @else
                             <a href="{{ route('login') }}"
-                               class="inline-flex items-center gap-1.5 rounded-lg bg-cf-surface-2 border border-cf-line px-4 py-2 text-sm font-semibold text-cf-ink hover:border-cf-gold/50 transition">
+                               class="inline-flex items-center gap-1.5 rounded-lg border border-cf-gold/40 bg-cf-gold/10 px-4 py-2 text-sm font-semibold text-cf-gold hover:bg-cf-gold/20 hover:border-cf-gold/60 transition">
                                 <i class="ti ti-door"></i> Espace salle
                             </a>
                         @endauth
@@ -96,7 +96,7 @@
                             </a>
                         @else
                             <a href="{{ route('login') }}"
-                               class="flex h-10 w-10 items-center justify-center rounded-full bg-cf-surface-2 border border-cf-line text-cf-ink"
+                               class="flex h-10 w-10 items-center justify-center rounded-full border border-cf-gold/40 bg-cf-gold/10 text-cf-gold"
                                aria-label="Espace salle — connexion">
                                 <i class="ti ti-door text-base"></i>
                             </a>
