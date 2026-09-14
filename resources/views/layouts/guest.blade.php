@@ -31,9 +31,9 @@
             </div>
 
             <a href="{{ Route::has('home') ? route('home') : '/' }}"
-               class="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-cf-surface/80 border border-cf-line backdrop-blur-sm text-cf-ink hover:text-cf-gold hover:border-cf-gold/40 transition"
-               aria-label="Retour au site">
-                <i class="ti ti-arrow-left"></i>
+               class="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 inline-flex items-center gap-1.5 rounded-full bg-cf-surface border border-cf-line px-3.5 py-2 text-sm font-semibold text-cf-ink shadow-lg shadow-black/40 hover:border-cf-gold/50 hover:text-cf-gold transition">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Retour
             </a>
 
             <div class="relative">

@@ -69,7 +69,7 @@
                             </a>
                         @else
                             <a href="{{ route('login') }}"
-                               class="inline-flex items-center gap-1.5 rounded-lg border border-cf-gold/40 bg-cf-gold/10 px-4 py-2 text-sm font-semibold text-cf-gold hover:bg-cf-gold/20 hover:border-cf-gold/60 transition">
+                               class="inline-flex items-center gap-1.5 rounded-lg bg-cf-gold px-4 py-2 text-sm font-semibold text-cf-gold-ink hover:bg-cf-gold-strong transition">
                                 <i class="ti ti-door"></i> Espace salle
                             </a>
                         @endauth
@@ -77,50 +77,52 @@
 
                     <div class="flex items-center gap-2 md:hidden">
                         @isset($festivalActif)
-                            <span class="relative flex h-2 w-2 shrink-0">
-                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
-                                <span class="relative inline-flex h-2 w-2 rounded-full bg-cf-gold"></span>
-                            </span>
+                            <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
+                               class="flex items-center gap-1.5 rounded-full border border-cf-gold/40 bg-cf-gold/10 px-2.5 py-2 text-xs font-bold text-cf-gold">
+                                <span class="relative flex h-1.5 w-1.5 shrink-0">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
+                                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
+                                </span>
+                                FESPACO
+                            </a>
                         @endisset
 
-                        <button @click="accountMenuOpen = !accountMenuOpen"
-                                class="flex items-center gap-2 rounded-full border border-cf-line bg-cf-surface-2 pl-3 pr-3.5 py-2 text-sm font-semibold text-cf-ink"
-                                aria-label="Menu du compte">
-                            <i class="ti text-lg" :class="accountMenuOpen ? 'ti-x' : 'ti-menu-2'"></i>
-                            @auth
+                        @auth
+                            <button @click="accountMenuOpen = !accountMenuOpen"
+                                    class="flex items-center gap-2 rounded-full bg-cf-gold pl-3 pr-3.5 py-2 text-sm font-bold text-cf-gold-ink shadow-lg shadow-black/30"
+                                    aria-label="Menu du compte">
+                                <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                                    <path :class="{'hidden': accountMenuOpen, 'inline-flex': !accountMenuOpen}" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M4 6h16M4 12h16M4 18h16" />
+                                    <path :class="{'hidden': !accountMenuOpen, 'inline-flex': accountMenuOpen}" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                                 Mon compte
-                            @else
+                            </button>
+                        @else
+                            <a href="{{ route('login') }}"
+                               class="flex items-center gap-2 rounded-full bg-cf-gold pl-3 pr-3.5 py-2 text-sm font-bold text-cf-gold-ink shadow-lg shadow-black/30">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/>
+                                </svg>
                                 Connexion
-                            @endauth
-                        </button>
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
 
-            {{-- Menu compte mobile : festival + accès espace salle / profil --}}
-            <div x-show="accountMenuOpen" x-cloak @click.outside="accountMenuOpen = false" class="md:hidden border-t border-cf-line bg-cf-bg">
-                <div class="px-4 py-3 space-y-1">
-                    @isset($festivalActif)
-                        <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
-                           class="flex items-center gap-2 rounded-lg border border-cf-gold/30 bg-cf-gold/10 px-3 py-2.5 text-sm font-semibold text-cf-gold">
-                            <span class="relative flex h-1.5 w-1.5 shrink-0">
-                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
-                                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
-                            </span>
-                            Festival en cours : {{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}
-                        </a>
-                    @endisset
-
-                    @auth
+            @auth
+                {{-- Menu compte mobile : accès tableau de bord / profil / déconnexion --}}
+                <div x-show="accountMenuOpen" x-cloak @click.outside="accountMenuOpen = false" class="md:hidden border-t border-cf-line bg-cf-bg">
+                    <div class="px-4 py-3 space-y-1">
                         <a href="{{ route(auth()->user()->dashboardRoute()) }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-cf-ink hover:bg-cf-surface-2 transition">
                             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold/15 text-cf-gold shrink-0">
-                                <i class="ti ti-layout-dashboard text-base"></i>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
                             </span>
                             Tableau de bord
                         </a>
                         <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-cf-ink hover:bg-cf-surface-2 transition">
                             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold/15 text-cf-gold shrink-0">
-                                <i class="ti ti-user text-base"></i>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
                             </span>
                             Mon profil
                         </a>
@@ -128,21 +130,14 @@
                             @csrf
                             <button type="submit" class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-500/10 transition">
                                 <span class="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/10 text-red-400 shrink-0">
-                                    <i class="ti ti-logout text-base"></i>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
                                 </span>
                                 Déconnexion
                             </button>
                         </form>
-                    @else
-                        <a href="{{ route('login') }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-cf-gold hover:bg-cf-surface-2 transition">
-                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold/15 text-cf-gold shrink-0">
-                                <i class="ti ti-door text-base"></i>
-                            </span>
-                            Espace salle — Se connecter
-                        </a>
-                    @endauth
+                    </div>
                 </div>
-            </div>
+            @endauth
         </header>
 
         <main class="pb-28 md:pb-0">
