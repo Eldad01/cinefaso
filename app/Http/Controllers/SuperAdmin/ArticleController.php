@@ -71,7 +71,7 @@ class ArticleController extends Controller
             'contenu' => ['required', 'string'],
             'type' => ['required', 'in:actualite,portrait,palmares'],
             'auteur' => ['nullable', 'string', 'max:150'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image', 'max:2048', 'dimensions:min_width=300,min_height=200'],
             'publie' => ['sometimes', 'boolean'],
         ]);
 

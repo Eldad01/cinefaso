@@ -30,7 +30,7 @@ class StoreFilmRequest extends FormRequest
             'langue' => ['required', 'string', 'max:100'],
             'genre' => ['required', 'string', 'max:150'],
             'synopsis' => ['nullable', 'string'],
-            'affiche' => ['nullable', 'image', 'max:2048'],
+            'affiche' => ['nullable', 'image', 'max:2048', 'dimensions:min_width=200,min_height=300'],
             'realisateur' => ['required', 'string', 'max:150'],
             'pays' => ['required', 'string', 'max:100'],
             'est_africain' => ['sometimes', 'boolean'],

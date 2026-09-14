@@ -28,7 +28,7 @@ class LieuAdminController extends Controller
             'description' => ['nullable', 'string'],
             'horaires' => ['nullable', 'string', 'max:200'],
             'tarifs' => ['nullable', 'string', 'max:200'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image', 'max:2048', 'dimensions:min_width=300,min_height=200'],
         ]);
 
         if ($request->hasFile('photo')) {

@@ -4,12 +4,12 @@
 
 @section('content')
     @if ($festivalActif)
-        <div class="mb-6 rounded-xl border-2 border-cf-gold/50 bg-cf-surface-2 p-4 flex items-center justify-between gap-4">
-            <p class="text-sm text-cf-gold-ink">
+        <div class="mb-6 rounded-xl border-2 border-cf-gold/50 bg-cf-surface-2 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p class="text-sm text-cf-ink">
                 <i class="ti ti-star-filled text-cf-gold mr-1"></i>
-                Festival actif : <strong>{{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}</strong>
+                Festival actif : <strong class="text-cf-gold">{{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}</strong>
             </p>
-            <a href="{{ route('superadmin.festivals.programme', $festivalActif) }}" class="text-sm font-semibold text-cf-gold hover:text-cf-gold-strong">
+            <a href="{{ route('superadmin.festivals.programme', $festivalActif) }}" class="shrink-0 text-sm font-semibold text-cf-gold hover:text-cf-gold-strong">
                 Gérer le programme <i class="ti ti-arrow-right"></i>
             </a>
         </div>
