@@ -18,12 +18,12 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {{-- Affiche --}}
         <div class="md:col-span-1">
-            <div class="aspect-[2/3] rounded-xl bg-gray-100 overflow-hidden md:sticky md:top-24">
+            <div class="h-40 sm:h-56 md:h-auto md:aspect-[2/3] rounded-xl bg-gray-100 overflow-hidden md:sticky md:top-24">
                 @if ($film->affiche)
                     <img src="{{ Storage::url($film->affiche) }}" alt="Affiche de {{ $film->titre }}" class="h-full w-full object-cover">
                 @else
                     <div class="h-full w-full flex items-center justify-center">
-                        <i class="ti ti-movie text-6xl text-gray-300"></i>
+                        <i class="ti ti-movie text-5xl md:text-6xl text-gray-300"></i>
                     </div>
                 @endif
             </div>

@@ -11,7 +11,42 @@
     </div>
 
     <div class="rounded-xl border border-gray-200 bg-white overflow-hidden">
-        <div class="overflow-x-auto">
+        {{-- Liste (mobile) --}}
+        <div class="md:hidden divide-y divide-gray-100">
+            @foreach ($festivals as $festival)
+                <div class="p-4">
+                    <div class="flex items-start justify-between gap-3">
+                        <p class="font-medium text-gray-900">
+                            {{ $festival->nom }}{{ $festival->edition ? ' — '.$festival->edition : '' }}
+                        </p>
+                        <x-badge :color="$festival->actif ? 'success' : 'gray'">{{ $festival->actif ? 'Actif' : 'Inactif' }}</x-badge>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">
+                        {{ $festival->date_debut->format('d/m/Y') }} — {{ $festival->date_fin->format('d/m/Y') }}
+                    </p>
+                    <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                        <a href="{{ route('superadmin.festivals.programme', $festival) }}" class="text-gray-500 font-medium">Programme</a>
+                        @if ($festival->actif)
+                            <form method="POST" action="{{ route('superadmin.festivals.clore', $festival) }}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="text-gray-500 font-medium">Clôturer</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('superadmin.festivals.activer', $festival) }}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="text-secondary-600 font-medium">Activer</button>
+                            </form>
+                        @endif
+                        <a href="{{ route('superadmin.festivals.edit', $festival) }}" class="text-primary-600 font-medium">Modifier</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Tableau (desktop) --}}
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-sm">
                 <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
                     <tr>

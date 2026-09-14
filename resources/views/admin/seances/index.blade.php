@@ -20,7 +20,30 @@
         @if ($seances->isEmpty())
             <p class="p-5 text-gray-500 text-sm">Aucune séance publiée pour le moment.</p>
         @else
-            <div class="overflow-x-auto">
+            {{-- Liste (mobile) --}}
+            <div class="md:hidden divide-y divide-gray-100">
+                @foreach ($seances as $seance)
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="font-medium text-gray-900">{{ $seance->film->titre }}</p>
+                            <x-badge :color="$seance->active ? 'success' : 'gray'">
+                                {{ $seance->active ? 'Active' : 'Annulée' }}
+                            </x-badge>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">{{ $seance->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</p>
+                        <div class="mt-2 flex items-center justify-between text-sm">
+                            <div class="flex items-center gap-2">
+                                <x-tag>{{ $seance->version }}</x-tag>
+                                <span class="text-gray-500">{{ number_format($seance->tarif_fcfa, 0, ',', ' ') }} FCFA</span>
+                            </div>
+                            <a href="{{ route('admin.seances.edit', $seance) }}" class="text-primary-600 font-medium">Modifier</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- Tableau (desktop) --}}
+            <div class="hidden md:block overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
                         <tr>

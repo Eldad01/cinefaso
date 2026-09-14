@@ -11,7 +11,33 @@
     </div>
 
     <div class="rounded-xl border border-gray-200 bg-white overflow-hidden">
-        <div class="overflow-x-auto">
+        {{-- Liste (mobile) --}}
+        <div class="md:hidden divide-y divide-gray-100">
+            @foreach ($lieux as $lieu)
+                <div class="p-4">
+                    <div class="flex items-start justify-between gap-3">
+                        <p class="font-medium text-gray-900">{{ $lieu->nom }}</p>
+                        <x-badge :color="$lieu->active ? 'success' : 'gray'">{{ $lieu->active ? 'Actif' : 'Désactivé' }}</x-badge>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">
+                        {{ $lieu->type === 'lieu_temporaire' ? 'Temporaire' : 'Permanent' }} · {{ $lieu->seances_count }} séance{{ $lieu->seances_count > 1 ? 's' : '' }}
+                    </p>
+                    <div class="mt-2 flex items-center justify-between text-sm">
+                        <form method="POST" action="{{ route('superadmin.lieux.toggle', $lieu) }}">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="text-gray-500 font-medium">
+                                {{ $lieu->active ? 'Désactiver' : 'Activer' }}
+                            </button>
+                        </form>
+                        <a href="{{ route('superadmin.lieux.edit', $lieu) }}" class="text-primary-600 font-medium">Modifier</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Tableau (desktop) --}}
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-sm">
                 <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
                     <tr>

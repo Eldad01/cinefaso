@@ -14,7 +14,27 @@
         @if ($evenements->isEmpty())
             <p class="p-5 text-gray-500 text-sm">Aucun événement pour le moment.</p>
         @else
-            <div class="overflow-x-auto">
+            {{-- Liste (mobile) --}}
+            <div class="md:hidden divide-y divide-gray-100">
+                @foreach ($evenements as $evenement)
+                    <div class="p-4">
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="font-medium text-gray-900">{{ $evenement->titre }}</p>
+                            @if ($evenement->est_fespaco)
+                                <x-badge color="secondary"><i class="ti ti-award"></i></x-badge>
+                            @endif
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1 capitalize">{{ str_replace('_', ' ', $evenement->type) }}</p>
+                        <div class="mt-2 flex items-center justify-between text-sm">
+                            <span class="text-gray-500">{{ $evenement->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</span>
+                            <a href="{{ route('admin.evenements.edit', $evenement) }}" class="text-primary-600 font-medium">Modifier</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- Tableau (desktop) --}}
+            <div class="hidden md:block overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
                         <tr>
