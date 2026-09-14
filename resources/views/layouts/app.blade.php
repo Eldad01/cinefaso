@@ -33,23 +33,6 @@
             ];
         @endphp
 
-        {{-- Bandeau festival --}}
-        @isset($festivalActif)
-            <div class="bg-cf-gold text-cf-gold-ink text-sm">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
-                    <i class="ti ti-star-filled"></i>
-                    <span class="font-semibold">{{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}</span>
-                    <span class="hidden sm:inline">
-                        du {{ $festivalActif->date_debut->locale('fr')->translatedFormat('d M') }}
-                        au {{ $festivalActif->date_fin->locale('fr')->translatedFormat('d M Y') }}
-                    </span>
-                    <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}" class="underline underline-offset-2 font-semibold hover:opacity-80">
-                        Voir le programme
-                    </a>
-                </div>
-            </div>
-        @endisset
-
         <header class="sticky top-0 z-40 bg-cf-bg/90 backdrop-blur-md border-b border-cf-line">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
@@ -57,17 +40,28 @@
                         <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-11 w-auto">
                     </a>
 
-                    <nav class="hidden md:flex items-center gap-6">
-                        @foreach ($navLinks as $link)
-                            @php $href = Route::has($link['route']) ? route($link['route']) : ($link['fallback'] ?? '#'); @endphp
-                            <a href="{{ $href }}"
-                               class="text-sm font-medium transition {{ Route::has($link['route']) && request()->routeIs($link['match']) ? 'text-cf-gold' : 'text-cf-muted hover:text-cf-ink' }}">
-                                {{ $link['label'] }}
-                            </a>
-                        @endforeach
-                    </nav>
+                    <div class="hidden md:flex items-center gap-6">
+                        <nav class="flex items-center gap-6">
+                            @foreach ($navLinks as $link)
+                                @php $href = Route::has($link['route']) ? route($link['route']) : ($link['fallback'] ?? '#'); @endphp
+                                <a href="{{ $href }}"
+                                   class="text-sm font-medium transition {{ Route::has($link['route']) && request()->routeIs($link['match']) ? 'text-cf-gold' : 'text-cf-muted hover:text-cf-ink' }}">
+                                    {{ $link['label'] }}
+                                </a>
+                            @endforeach
+                        </nav>
 
-                    <div class="hidden md:flex items-center gap-3">
+                        @isset($festivalActif)
+                            <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
+                               class="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-cf-gold/30 bg-cf-gold/10 pl-2.5 pr-3.5 py-1.5 text-xs font-semibold text-cf-gold hover:bg-cf-gold/20 transition">
+                                <span class="relative flex h-1.5 w-1.5 shrink-0">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
+                                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
+                                </span>
+                                {{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}
+                            </a>
+                        @endisset
+
                         @auth
                             <a href="{{ route(auth()->user()->dashboardRoute()) }}"
                                class="inline-flex items-center gap-1.5 rounded-lg bg-cf-gold px-4 py-2 text-sm font-semibold text-cf-gold-ink hover:bg-cf-gold-strong transition">
@@ -87,9 +81,20 @@
                 </div>
             </div>
 
-            {{-- Menu mobile (auth uniquement — la navigation principale est en barre basse) --}}
+            {{-- Menu mobile (auth + festival — la navigation principale est en barre basse) --}}
             <div x-show="mobileNavOpen" x-cloak @click.outside="mobileNavOpen = false" class="md:hidden border-t border-cf-line bg-cf-bg">
-                <nav class="px-4 py-3">
+                <nav class="px-4 py-3 space-y-1">
+                    @isset($festivalActif)
+                        <a href="{{ Route::has('festival.actif') ? route('festival.actif') : '#' }}"
+                           class="flex items-center gap-2 rounded-md border border-cf-gold/30 bg-cf-gold/10 px-3 py-2.5 text-sm font-semibold text-cf-gold">
+                            <span class="relative flex h-1.5 w-1.5 shrink-0">
+                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cf-gold opacity-75"></span>
+                                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-cf-gold"></span>
+                            </span>
+                            {{ $festivalActif->nom }}{{ $festivalActif->edition ? ' — '.$festivalActif->edition : '' }}
+                        </a>
+                    @endisset
+
                     @auth
                         <a href="{{ route(auth()->user()->dashboardRoute()) }}" class="block rounded-md px-3 py-2 text-base font-medium text-cf-gold">
                             <i class="ti ti-layout-dashboard"></i> Mon espace
