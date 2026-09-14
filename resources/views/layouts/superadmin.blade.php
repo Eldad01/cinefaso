@@ -53,13 +53,19 @@
                 </nav>
 
                 <div class="px-3 py-4 border-t border-cf-line space-y-1">
-                    <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-cf-muted hover:bg-cf-surface-2 hover:text-cf-ink">
-                        <i class="ti ti-user"></i> Mon profil
+                    <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-cf-ink hover:bg-cf-surface-2 transition">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold/15 text-cf-gold shrink-0">
+                            <i class="ti ti-user text-base"></i>
+                        </span>
+                        Mon profil
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-cf-muted hover:bg-cf-surface-2 hover:text-cf-ink">
-                            <i class="ti ti-logout"></i> Déconnexion
+                        <button type="submit" class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-500/10 transition">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/10 text-red-400 shrink-0">
+                                <i class="ti ti-logout text-base"></i>
+                            </span>
+                            Déconnexion
                         </button>
                     </form>
                 </div>
@@ -69,12 +75,13 @@
 
             {{-- Content --}}
             <div class="flex-1 flex flex-col min-w-0">
-                <header class="h-16 bg-cf-surface border-b border-cf-line flex items-center justify-between px-4 sm:px-6">
-                    <button @click="sidebarOpen = !sidebarOpen" class="md:hidden p-2 -ml-2 text-cf-muted" aria-label="Ouvrir le menu">
+                <header class="h-16 bg-cf-surface border-b border-cf-line flex items-center gap-3 px-4 sm:px-6">
+                    <button @click="sidebarOpen = !sidebarOpen" class="md:hidden shrink-0 -ml-1 p-1 text-cf-muted" aria-label="Ouvrir le menu">
                         <i class="ti ti-menu-2 text-2xl"></i>
                     </button>
-                    <h1 class="font-display text-lg font-semibold text-cf-ink">@yield('page-title', 'Espace super admin')</h1>
-                    <span class="text-sm text-cf-muted hidden sm:inline">{{ auth()->user()->nom }}</span>
+                    <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-8 w-auto shrink-0 md:hidden">
+                    <h1 class="font-display text-lg font-semibold text-cf-ink truncate">@yield('page-title', 'Espace super admin')</h1>
+                    <span class="ml-auto shrink-0 text-sm text-cf-muted hidden sm:inline">{{ auth()->user()->nom }}</span>
                 </header>
 
                 <main class="flex-1 p-4 sm:p-6">

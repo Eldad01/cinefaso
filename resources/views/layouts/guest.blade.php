@@ -30,6 +30,12 @@
                 <div class="absolute bottom-0 right-1/3 h-64 w-64 rounded-full opacity-30 blur-[90px] bg-cf-gold"></div>
             </div>
 
+            <a href="{{ Route::has('home') ? route('home') : '/' }}"
+               class="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-cf-surface/80 border border-cf-line backdrop-blur-sm text-cf-ink hover:text-cf-gold hover:border-cf-gold/40 transition"
+               aria-label="Retour au site">
+                <i class="ti ti-arrow-left"></i>
+            </a>
+
             <div class="relative">
                 <a href="/">
                     <img src="{{ asset('images/logo-full.webp') }}" alt="CinéFaso" class="h-32 w-auto">
