@@ -22,16 +22,19 @@ $COMPOSE up -d
 echo "4. Migrations..."
 $COMPOSE exec -T app php artisan migrate --force
 
-echo "5. Recréation des caches..."
+echo "5. Lien de stockage public..."
+$COMPOSE exec -T app php artisan storage:link --force
+
+echo "6. Recréation des caches..."
 $COMPOSE exec -T app php artisan optimize:clear
 $COMPOSE exec -T app php artisan config:cache
 $COMPOSE exec -T app php artisan route:cache
 $COMPOSE exec -T app php artisan view:cache
 
-echo "6. Nettoyage des anciennes images..."
+echo "7. Nettoyage des anciennes images..."
 docker image prune -f
 
-echo "7. État des conteneurs..."
+echo "8. État des conteneurs..."
 $COMPOSE ps
 
 echo "=== Déploiement terminé ==="

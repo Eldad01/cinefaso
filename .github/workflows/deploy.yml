@@ -61,6 +61,9 @@ jobs:
             echo "=== Migrations Laravel ==="
             docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
 
+            echo "=== Lien de stockage public ==="
+            docker compose -f docker-compose.prod.yml exec -T app php artisan storage:link --force
+
             echo "=== Nettoyage du cache ==="
             docker compose -f docker-compose.prod.yml exec -T app php artisan optimize:clear
 
