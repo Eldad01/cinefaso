@@ -1,0 +1,78 @@
+name: Deploy CinéFaso
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Récupérer le code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Se connecter à Docker Hub
+      - name: Login Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Construire l'image Docker
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t eldad01/cinefaso:latest \
+            -t eldad01/cinefaso:${{ github.sha }} \
+            .
+
+      # 4. Envoyer l'image vers Docker Hub
+      - name: Push Docker image
+        run: |
+          docker push eldad01/cinefaso:latest
+          docker push eldad01/cinefaso:${{ github.sha }}
+
+      # 5. Installer la clé SSH
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github-actions-cinefaso
+          chmod 600 ~/.ssh/github-actions-cinefaso
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      # 6. Déployer sur le VPS
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/github-actions-cinefaso \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+
+            cd /opt/cinefaso
+
+            echo "=== Téléchargement de la nouvelle image ==="
+            docker pull eldad01/cinefaso:latest
+
+            echo "=== Redémarrage de l'application ==="
+            docker compose -f docker-compose.prod.yml up -d
+
+            echo "=== Migrations Laravel ==="
+            docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
+
+            echo "=== Nettoyage du cache ==="
+            docker compose -f docker-compose.prod.yml exec -T app php artisan optimize:clear
+
+            echo "=== Recréation des caches ==="
+            docker compose -f docker-compose.prod.yml exec -T app php artisan config:cache
+            docker compose -f docker-compose.prod.yml exec -T app php artisan route:cache
+            docker compose -f docker-compose.prod.yml exec -T app php artisan view:cache
+
+            echo "=== Nettoyage des anciennes images ==="
+            docker image prune -f
+
+            echo "=== État des conteneurs ==="
+            docker compose -f docker-compose.prod.yml ps
+
+            EOF

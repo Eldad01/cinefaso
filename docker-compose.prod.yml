@@ -1,6 +1,6 @@
 services:
     app:
-        build: .
+        image: eldad01/cinefaso:latest
         container_name: cinefaso_app
         restart: unless-stopped
         env_file: .env
