@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Public;
+
+use App\Http\Controllers\Controller;
+use App\Models\Evenement;
+use Illuminate\View\View;
+
+class AgendaController extends Controller
+{
+    public function index(): View
+    {
+        $evenements = Evenement::query()
+            ->where('date_heure', '>=', now())
+            ->with('lieu')
+            ->orderBy('date_heure')
+            ->get()
+            ->groupBy(fn (Evenement $e) => $e->date_heure->locale('fr')->translatedFormat('F Y'));
+
+        $prochains = Evenement::query()
+            ->where('date_heure', '>=', now())
+            ->orderBy('date_heure')
+            ->take(5)
+            ->get();
+
+        return view('public.agenda', [
+            'evenements' => $evenements,
+            'prochains' => $prochains,
+        ]);
+    }
+}
