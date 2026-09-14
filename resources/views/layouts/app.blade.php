@@ -65,12 +65,14 @@
                         @auth
                             <a href="{{ route(auth()->user()->dashboardRoute()) }}"
                                class="inline-flex items-center gap-1.5 rounded-lg bg-cf-gold px-4 py-2 text-sm font-semibold text-cf-gold-ink hover:bg-cf-gold-strong transition">
-                                <i class="ti ti-layout-dashboard"></i> Mon espace
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                                Mon espace
                             </a>
                         @else
                             <a href="{{ route('login') }}"
                                class="inline-flex items-center gap-1.5 rounded-lg bg-cf-gold px-4 py-2 text-sm font-semibold text-cf-gold-ink hover:bg-cf-gold-strong transition">
-                                <i class="ti ti-door"></i> Espace salle
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+                                Espace salle
                             </a>
                         @endauth
                     </div>

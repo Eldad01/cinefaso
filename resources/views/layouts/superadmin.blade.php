@@ -55,7 +55,7 @@
                 <div class="px-3 py-4 border-t border-cf-line space-y-1">
                     <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-cf-ink hover:bg-cf-surface-2 transition">
                         <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold/15 text-cf-gold shrink-0">
-                            <i class="ti ti-user text-base"></i>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </span>
                         Mon profil
                     </a>
@@ -63,7 +63,7 @@
                         @csrf
                         <button type="submit" class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-500/10 transition">
                             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/10 text-red-400 shrink-0">
-                                <i class="ti ti-logout text-base"></i>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
                             </span>
                             Déconnexion
                         </button>
