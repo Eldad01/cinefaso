@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="max-w-5xl">
-    <div class="mb-4 flex items-center gap-2 text-sm text-gray-500">
-        <a href="{{ route('admin.seances.index') }}" class="hover:text-primary-600">Séances</a>
+    <div class="mb-4 flex items-center gap-2 text-sm text-cf-muted">
+        <a href="{{ route('admin.seances.index') }}" class="hover:text-cf-gold">Séances</a>
         <i class="ti ti-chevron-right"></i>
-        <span class="text-gray-900">Grille semaine</span>
+        <span class="text-cf-ink">Grille semaine</span>
     </div>
 
-    <div class="rounded-xl border border-gray-200 bg-white p-6">
-        <p class="text-sm text-gray-500 mb-6">
+    <div class="rounded-xl border border-cf-line bg-cf-surface p-6">
+        <p class="text-sm text-cf-muted mb-6">
             Choisissez le lundi de la semaine à programmer, ajoutez un film par ligne, puis remplissez
             uniquement les cases des jours où il est projeté (format HH:MM). Laissez vide les jours sans séance.
         </p>
@@ -20,15 +20,15 @@
             @csrf
 
             <div class="mb-6">
-                <label for="semaine_du" class="block text-sm font-medium text-gray-700 mb-1">Semaine du (lundi)</label>
+                <label for="semaine_du" class="block text-sm font-medium text-cf-muted mb-1">Semaine du (lundi)</label>
                 <input type="date" name="semaine_du" id="semaine_du" required
-                       class="rounded-lg border-gray-300 text-sm focus:border-primary-500 focus:ring-primary-500">
+                       class="rounded-lg border-cf-line text-sm focus:border-cf-gold focus:ring-cf-gold">
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-sm border-separate border-spacing-y-2">
                     <thead>
-                        <tr class="text-xs text-gray-500 uppercase">
+                        <tr class="text-xs text-cf-muted uppercase">
                             <th class="text-left px-2">Film</th>
                             <th class="text-left px-2">Version</th>
                             <th class="text-left px-2">Tarif</th>
@@ -47,12 +47,12 @@
             </div>
 
             <button type="button" id="add-row"
-                    class="mt-2 inline-flex items-center gap-2 rounded-lg border border-primary-200 text-primary-700 px-4 py-2 text-sm font-semibold hover:bg-primary-50 transition">
+                    class="mt-2 inline-flex items-center gap-2 rounded-lg border border-cf-gold/30 text-cf-gold px-4 py-2 text-sm font-semibold hover:bg-cf-gold/10 transition">
                 <i class="ti ti-plus"></i> Ajouter un film à la grille
             </button>
 
             <div class="mt-6">
-                <button type="submit" class="rounded-lg bg-primary-600 text-white px-5 py-2.5 text-sm font-semibold hover:bg-primary-700 transition">
+                <button type="submit" class="rounded-lg bg-cf-gold text-cf-gold-ink px-5 py-2.5 text-sm font-semibold hover:bg-cf-gold-strong transition">
                     Publier tout le programme
                 </button>
             </div>
@@ -63,7 +63,7 @@
 <template id="row-template">
     <tr class="align-top">
         <td class="px-2 py-1 min-w-[160px]">
-            <select name="__ROWNAME__[film_id]" required class="w-full rounded-lg border-gray-300 text-xs focus:border-primary-500 focus:ring-primary-500">
+            <select name="__ROWNAME__[film_id]" required class="w-full rounded-lg border-cf-line text-xs focus:border-cf-gold focus:ring-cf-gold">
                 <option value="">Film…</option>
                 @foreach ($films as $film)
                     <option value="{{ $film->id }}">{{ $film->titre }}</option>
@@ -71,7 +71,7 @@
             </select>
         </td>
         <td class="px-2 py-1">
-            <select name="__ROWNAME__[version]" required class="w-full rounded-lg border-gray-300 text-xs focus:border-primary-500 focus:ring-primary-500">
+            <select name="__ROWNAME__[version]" required class="w-full rounded-lg border-cf-line text-xs focus:border-cf-gold focus:ring-cf-gold">
                 @foreach (['VF', 'VO', 'VOSTFR', '3D', '3D-VF', '3D-VOSTFR'] as $version)
                     <option value="{{ $version }}">{{ $version }}</option>
                 @endforeach
@@ -79,16 +79,16 @@
         </td>
         <td class="px-2 py-1">
             <input type="number" name="__ROWNAME__[tarif_fcfa]" min="0" required placeholder="FCFA"
-                   class="w-20 rounded-lg border-gray-300 text-xs focus:border-primary-500 focus:ring-primary-500">
+                   class="w-20 rounded-lg border-cf-line text-xs focus:border-cf-gold focus:ring-cf-gold">
         </td>
         @for ($i = 0; $i < 7; $i++)
             <td class="px-1 py-1">
                 <input type="time" name="__ROWNAME__[horaires][{{ $i }}]"
-                       class="w-24 rounded-lg border-gray-300 text-xs focus:border-primary-500 focus:ring-primary-500">
+                       class="w-24 rounded-lg border-cf-line text-xs focus:border-cf-gold focus:ring-cf-gold">
             </td>
         @endfor
         <td class="px-1 py-1">
-            <button type="button" class="remove-row text-gray-400 hover:text-red-600" aria-label="Supprimer cette ligne">
+            <button type="button" class="remove-row text-cf-faint hover:text-red-600" aria-label="Supprimer cette ligne">
                 <i class="ti ti-x"></i>
             </button>
         </td>

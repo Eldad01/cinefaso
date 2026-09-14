@@ -2,11 +2,11 @@
 
 @php
     $colors = [
-        'primary' => 'bg-primary-50 text-primary-700 ring-primary-600/20',
-        'secondary' => 'bg-secondary-50 text-secondary-800 ring-secondary-600/30',
-        'success' => 'bg-green-50 text-green-700 ring-green-600/20',
-        'info' => 'bg-blue-50 text-blue-700 ring-blue-600/20',
-        'gray' => 'bg-gray-100 text-gray-600 ring-gray-500/10',
+        'primary' => 'bg-cf-gold/15 text-cf-gold ring-cf-gold/30',
+        'secondary' => 'bg-cf-gold/15 text-cf-gold ring-cf-gold/30',
+        'success' => 'bg-cf-ok/15 text-cf-ok ring-cf-ok/30',
+        'info' => 'bg-blue-500/15 text-blue-300 ring-blue-500/30',
+        'gray' => 'bg-cf-surface-2 text-cf-muted ring-cf-line',
     ];
     $classes = $colors[$color] ?? $colors['gray'];
 @endphp

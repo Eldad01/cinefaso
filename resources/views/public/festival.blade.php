@@ -3,13 +3,16 @@
 @section('title', $festival->nom)
 
 @section('content')
-<div class="bg-gradient-to-br from-primary-700 to-primary-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-        <p class="text-secondary-300 font-semibold uppercase tracking-wide text-sm">Festival</p>
-        <h1 class="mt-2 text-3xl sm:text-5xl font-extrabold">
+<div class="relative overflow-hidden">
+    <div class="absolute inset-0" style="background:linear-gradient(160deg,#6B3A2E 0 45%,#141110 45% 100%)"></div>
+    <svg class="absolute -left-10 -bottom-10 w-64 text-cf-gold opacity-80" viewBox="0 0 130 130" fill="currentColor"><path d="M0 110 A110 110 0 0 1 110 0 L110 110 Z"/></svg>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-cf-bg"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+        <p class="text-cf-gold font-semibold uppercase tracking-wide text-sm">Festival</p>
+        <h1 class="mt-2 font-display text-3xl sm:text-5xl font-extrabold text-cf-ink">
             {{ $festival->nom }}{{ $festival->edition ? ' — '.$festival->edition : '' }}
         </h1>
-        <p class="mt-4 text-white/90">
+        <p class="mt-4 text-cf-muted">
             du {{ $festival->date_debut->locale('fr')->translatedFormat('d F') }}
             au {{ $festival->date_fin->locale('fr')->translatedFormat('d F Y') }}
         </p>
@@ -18,7 +21,7 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
     @if ($festival->description)
-        <p class="text-gray-600 leading-relaxed max-w-3xl">{{ $festival->description }}</p>
+        <p class="text-cf-muted leading-relaxed max-w-3xl">{{ $festival->description }}</p>
     @endif
 
     {{-- Programme par catégorie --}}
@@ -26,7 +29,7 @@
         <x-section-title title="Programme" />
         @forelse ($seancesParCategorie as $categorie => $seances)
             <div class="mb-8">
-                <h3 class="font-semibold text-gray-900 capitalize mb-3">{{ str_replace('_', ' ', $categorie) }}</h3>
+                <h3 class="font-semibold text-cf-ink capitalize mb-3">{{ str_replace('_', ' ', $categorie) }}</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach ($seances as $seance)
                         <x-card-film :seance="$seance" />
@@ -34,7 +37,7 @@
                 </div>
             </div>
         @empty
-            <p class="text-gray-500">Le programme sera bientôt disponible.</p>
+            <p class="text-cf-muted">Le programme sera bientôt disponible.</p>
         @endforelse
     </section>
 
@@ -56,13 +59,13 @@
             <x-section-title title="Événements et cérémonies" />
             <div class="space-y-3">
                 @foreach ($evenements as $evenement)
-                    <div class="rounded-xl border border-gray-200 bg-white p-4 flex items-center justify-between gap-3">
+                    <div class="rounded-xl border border-cf-line bg-cf-surface p-4 flex items-center justify-between gap-3">
                         <div>
-                            <p class="font-medium text-gray-900">{{ $evenement->titre }}</p>
-                            <p class="text-xs text-gray-500">{{ $evenement->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</p>
+                            <p class="font-medium text-cf-ink">{{ $evenement->titre }}</p>
+                            <p class="text-xs text-cf-faint">{{ $evenement->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</p>
                         </div>
                         @if ($evenement->lieu)
-                            <span class="text-sm text-gray-500">{{ $evenement->lieu->nom }}</span>
+                            <span class="text-sm text-cf-muted">{{ $evenement->lieu->nom }}</span>
                         @endif
                     </div>
                 @endforeach

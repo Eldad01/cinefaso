@@ -13,6 +13,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                body: ['Sora', ...defaultTheme.fontFamily.sans],
+                display: ['"Bricolage Grotesque"', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: {
@@ -38,6 +40,20 @@ export default {
                     700: '#7d6626',
                     800: '#55451a',
                     900: '#33290f',
+                },
+                // Palette de la refonte "dark / cinéma" (site public + future app mobile)
+                cf: {
+                    bg: 'oklch(14% 0.012 55)',
+                    surface: 'oklch(19% 0.014 55)',
+                    'surface-2': 'oklch(24% 0.017 55)',
+                    line: 'oklch(30% 0.016 55)',
+                    ink: 'oklch(97% 0.006 60)',
+                    muted: 'oklch(70% 0.02 60)',
+                    faint: 'oklch(52% 0.018 60)',
+                    gold: 'oklch(78% 0.15 82)',
+                    'gold-strong': 'oklch(70% 0.16 78)',
+                    'gold-ink': 'oklch(20% 0.03 75)',
+                    ok: 'oklch(72% 0.15 148)',
                 },
             },
         },

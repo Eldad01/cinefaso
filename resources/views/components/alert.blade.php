@@ -2,10 +2,10 @@
 
 @php
     $styles = [
-        'success' => ['bg-green-50 text-green-800 ring-green-600/20', 'ti-circle-check', 'text-green-500'],
-        'error' => ['bg-red-50 text-red-800 ring-red-600/20', 'ti-alert-circle', 'text-red-500'],
-        'warning' => ['bg-amber-50 text-amber-800 ring-amber-600/20', 'ti-alert-triangle', 'text-amber-500'],
-        'info' => ['bg-blue-50 text-blue-800 ring-blue-600/20', 'ti-info-circle', 'text-blue-500'],
+        'success' => ['bg-cf-ok/10 text-cf-ok ring-cf-ok/30', 'ti-circle-check', 'text-cf-ok'],
+        'error' => ['bg-red-500/10 text-red-300 ring-red-500/30', 'ti-alert-circle', 'text-red-400'],
+        'warning' => ['bg-amber-500/10 text-amber-300 ring-amber-500/30', 'ti-alert-triangle', 'text-amber-400'],
+        'info' => ['bg-blue-500/10 text-blue-300 ring-blue-500/30', 'ti-info-circle', 'text-blue-400'],
     ];
     [$classes, $icon, $iconColor] = $styles[$type] ?? $styles['info'];
 @endphp

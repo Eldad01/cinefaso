@@ -7,7 +7,7 @@
     <x-section-title title="Les lieux" subtitle="Cinémas et salles partenaires à Ouagadougou" />
 
     @if ($lieux->isEmpty())
-        <p class="text-gray-500">Aucun lieu disponible pour le moment.</p>
+        <p class="text-cf-muted">Aucun lieu disponible pour le moment.</p>
     @else
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             @foreach ($lieux as $lieu)

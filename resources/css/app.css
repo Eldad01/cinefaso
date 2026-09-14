@@ -5,3 +5,19 @@
 [x-cloak] {
     display: none !important;
 }
+
+/* Champs de formulaire du back-office (thème sombre) */
+.backoffice-dark input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+.backoffice-dark select,
+.backoffice-dark textarea {
+    @apply bg-cf-surface-2 border-cf-line text-cf-ink;
+}
+
+.backoffice-dark input::placeholder,
+.backoffice-dark textarea::placeholder {
+    @apply text-cf-faint;
+}
+
+.backoffice-dark select option {
+    @apply bg-cf-surface text-cf-ink;
+}
