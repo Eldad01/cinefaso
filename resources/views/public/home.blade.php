@@ -125,24 +125,16 @@
     {{-- Prochain événement --}}
     @if ($prochainEvenement)
         <section>
-            <x-section-title title="Prochain événement" />
-            <div class="rounded-xl border border-cf-line bg-cf-surface p-6 flex flex-col sm:flex-row items-center gap-6">
-                <div class="shrink-0 flex flex-col items-center justify-center h-20 w-20 rounded-lg bg-cf-surface-2 text-cf-gold">
-                    <span class="font-display text-2xl font-bold">{{ $prochainEvenement->date_heure->format('d') }}</span>
-                    <span class="text-xs uppercase font-medium">{{ $prochainEvenement->date_heure->locale('fr')->translatedFormat('M') }}</span>
-                </div>
-                <div class="flex-1 text-center sm:text-left">
-                    <h3 class="font-semibold text-cf-ink">{{ $prochainEvenement->titre }}</h3>
-                    <p class="text-sm text-cf-muted mt-1">
-                        <i class="ti ti-clock"></i> {{ $prochainEvenement->date_heure->format('H:i') }}
-                        @if ($prochainEvenement->lieu)
-                            · <i class="ti ti-map-pin"></i> {{ $prochainEvenement->lieu->nom }}
-                        @endif
-                    </p>
-                </div>
-                @if ($prochainEvenement->est_fespaco)
-                    <span class="inline-flex items-center gap-1 rounded-full bg-cf-gold px-3 py-1 text-xs font-bold text-cf-gold-ink"><i class="ti ti-award"></i> FESPACO</span>
-                @endif
+            <x-section-title title="Prochain événement" subtitle="Avant-premières, débats et cérémonies">
+                <x-slot name="actions">
+                    <a href="{{ route('agenda') }}" class="text-sm font-medium text-cf-gold hover:text-cf-gold-strong">
+                        Tout l'agenda <i class="ti ti-arrow-right"></i>
+                    </a>
+                </x-slot>
+            </x-section-title>
+
+            <div class="max-w-md">
+                <x-card-evenement :evenement="$prochainEvenement" />
             </div>
         </section>
     @endif

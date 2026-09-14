@@ -52,12 +52,9 @@
             @if ($prochainsEvenements->isNotEmpty())
                 <div>
                     <h2 class="font-display font-bold text-cf-ink mb-3">Prochains événements</h2>
-                    <div class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         @foreach ($prochainsEvenements as $evenement)
-                            <div class="rounded-lg border border-cf-line bg-cf-surface p-3">
-                                <p class="font-medium text-cf-ink">{{ $evenement->titre }}</p>
-                                <p class="text-xs text-cf-faint">{{ $evenement->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</p>
-                            </div>
+                            <x-card-evenement :evenement="$evenement" />
                         @endforeach
                     </div>
                 </div>

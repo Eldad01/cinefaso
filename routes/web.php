@@ -12,6 +12,7 @@ use App\Http\Controllers\SuperAdmin\StatsController;
 use App\Http\Controllers\SuperAdmin\UserSuperAdminController;
 use App\Http\Controllers\Public\AgendaController;
 use App\Http\Controllers\Public\DecouvrirController;
+use App\Http\Controllers\Public\EvenementController;
 use App\Http\Controllers\Public\FestivalController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LieuController;
@@ -28,6 +29,7 @@ Route::get('/lieux', [LieuController::class, 'index'])->name('lieux.index');
 Route::get('/lieux/{lieu}', [LieuController::class, 'show'])->name('lieux.show');
 Route::get('/decouvrir', [DecouvrirController::class, 'index'])->name('decouvrir');
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+Route::get('/evenements/{evenement}', [EvenementController::class, 'show'])->name('evenement.show');
 Route::get('/festival', [FestivalController::class, 'actif'])->name('festival.actif');
 Route::get('/festival/{festival}', [FestivalController::class, 'show'])->name('festival.show');
 

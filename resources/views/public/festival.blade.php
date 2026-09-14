@@ -57,17 +57,9 @@
     @if ($evenements->isNotEmpty())
         <section>
             <x-section-title title="Événements et cérémonies" />
-            <div class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach ($evenements as $evenement)
-                    <div class="rounded-xl border border-cf-line bg-cf-surface p-4 flex items-center justify-between gap-3">
-                        <div>
-                            <p class="font-medium text-cf-ink">{{ $evenement->titre }}</p>
-                            <p class="text-xs text-cf-faint">{{ $evenement->date_heure->locale('fr')->translatedFormat('D d M · H:i') }}</p>
-                        </div>
-                        @if ($evenement->lieu)
-                            <span class="text-sm text-cf-muted">{{ $evenement->lieu->nom }}</span>
-                        @endif
-                    </div>
+                    <x-card-evenement :evenement="$evenement" />
                 @endforeach
             </div>
         </section>
