@@ -7,6 +7,8 @@
 
         <title>@yield('title', 'Espace super admin') — CinéFaso</title>
 
+        @include('partials.favicon')
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,11 +33,8 @@
             {{-- Sidebar --}}
             <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
                    class="fixed inset-y-0 left-0 z-30 w-64 bg-cf-surface border-r border-cf-line text-cf-ink transform transition-transform duration-200 md:translate-x-0 md:static md:flex md:flex-col">
-                <div class="h-16 flex items-center gap-2 px-6 border-b border-cf-line">
-                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold text-cf-gold-ink font-bold">
-                        <i class="ti ti-movie"></i>
-                    </span>
-                    <span class="font-display font-bold">Ciné<span class="text-cf-gold">Faso</span></span>
+                <div class="h-16 flex items-center px-6 border-b border-cf-line">
+                    <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-10 w-auto">
                 </div>
 
                 <div class="px-6 py-4 text-sm text-cf-muted border-b border-cf-line">

@@ -7,6 +7,8 @@
 
         <title>{{ config('app.name', 'CinéFaso') }}</title>
 
+        @include('partials.favicon')
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +23,8 @@
     <body class="font-body text-cf-ink antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cf-bg">
             <div>
-                <a href="/" class="flex items-center gap-2">
-                    <span class="flex h-11 w-11 items-center justify-center rounded-full bg-cf-gold text-cf-gold-ink">
-                        <i class="ti ti-movie text-xl"></i>
-                    </span>
-                    <span class="font-display text-2xl font-extrabold text-cf-ink">Ciné<span class="text-cf-gold">Faso</span></span>
+                <a href="/">
+                    <img src="{{ asset('images/logo-full.webp') }}" alt="CinéFaso" class="h-32 w-auto">
                 </a>
             </div>
 

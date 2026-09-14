@@ -4,12 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center gap-2">
-                    <a href="{{ route(auth()->user()->dashboardRoute()) }}" class="flex items-center gap-2">
-                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cf-gold text-cf-gold-ink font-bold">
-                            <i class="ti ti-movie"></i>
-                        </span>
-                        <span class="font-display font-bold text-cf-ink">Ciné<span class="text-cf-gold">Faso</span></span>
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ route(auth()->user()->dashboardRoute()) }}">
+                        <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-10 w-auto">
                     </a>
                 </div>
 

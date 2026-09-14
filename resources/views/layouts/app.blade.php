@@ -8,6 +8,8 @@
 
         <title>@yield('title', config('app.name', 'CinéFaso')) — CinéFaso</title>
 
+        @include('partials.favicon')
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,10 +54,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
                     <a href="{{ Route::has('home') ? route('home') : '/' }}" class="flex items-center gap-2 shrink-0">
-                        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-cf-gold text-cf-gold-ink">
-                            <i class="ti ti-movie"></i>
-                        </span>
-                        <span class="font-display text-lg font-extrabold text-cf-ink">Ciné<span class="text-cf-gold">Faso</span></span>
+                        <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-11 w-auto">
                     </a>
 
                     <nav class="hidden md:flex items-center gap-6">
@@ -111,9 +110,7 @@
         <footer class="hidden md:block mt-16 border-t border-cf-line bg-cf-bg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-2 font-display font-bold text-cf-ink">
-                        <i class="ti ti-movie text-cf-gold"></i> CinéFaso
-                    </div>
+                    <img src="{{ asset('images/logo-lockup.webp') }}" alt="CinéFaso" class="h-8 w-auto">
                     <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-cf-muted">
                         @foreach ($navLinks as $link)
                             @php $href = Route::has($link['route']) ? route($link['route']) : ($link['fallback'] ?? '#'); @endphp
