@@ -57,10 +57,31 @@ class LieuController extends Controller
             ->take(5)
             ->get();
 
+        $debutSemaine = today();
+        $jours = collect(range(0, 6))->map(fn ($i) => $debutSemaine->copy()->addDays($i));
+
+        $seancesSemaine = $lieu->seances()
+            ->whereBetween('date_heure', [$debutSemaine->copy()->startOfDay(), $debutSemaine->copy()->addDays(6)->endOfDay()])
+            ->where('active', true)
+            ->with('film')
+            ->orderBy('date_heure')
+            ->get();
+
+        $programme = $seancesSemaine
+            ->groupBy('film_id')
+            ->map(fn ($seances) => [
+                'film' => $seances->first()->film,
+                'parJour' => $seances->groupBy(fn ($s) => $s->date_heure->format('Y-m-d')),
+            ])
+            ->sortBy(fn ($p) => $p['film']->titre)
+            ->values();
+
         return view('public.lieu', [
             'lieu' => $lieu,
             'seancesDuSoir' => $seancesDuSoir,
             'prochainsEvenements' => $prochainsEvenements,
+            'jours' => $jours,
+            'programme' => $programme,
         ]);
     }
 }
