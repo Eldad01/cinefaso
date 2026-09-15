@@ -49,6 +49,24 @@ class ArticleSeeder extends Seeder
                 'auteur' => 'Rédaction CinéFaso',
                 'contenu' => "Pour ne plus manquer une séance, il est désormais possible d'activer un rappel par SMS directement depuis la fiche de chaque film. Un message est envoyé automatiquement avant le début de la séance choisie.",
             ],
+            [
+                'titre' => 'Portrait : Apolline Traoré, cheffe de file du nouveau cinéma burkinabè',
+                'type' => 'portrait',
+                'auteur' => 'Rédaction CinéFaso',
+                'contenu' => "Première réalisatrice burkinabè à remporter l'Étalon d'or de Yennenga avec \"Sira\", Apolline Traoré s'impose comme une voix majeure du cinéma ouest-africain contemporain, entre engagement social et sens du spectacle.",
+            ],
+            [
+                'titre' => 'Moolaadé fête ses 20 ans sur grand écran',
+                'type' => 'actualite',
+                'auteur' => 'Rédaction CinéFaso',
+                'contenu' => "Vingt ans après sa sélection à Cannes, le film d'Ousmane Sembène est de nouveau à l'affiche dans plusieurs salles partenaires. L'occasion de redécouvrir un classique du cinéma engagé africain.",
+            ],
+            [
+                'titre' => 'Trois nouvelles salles rejoignent le réseau CinéFaso',
+                'type' => 'actualite',
+                'auteur' => 'Rédaction CinéFaso',
+                'contenu' => "Le réseau de salles partenaires continue de s'étoffer à Ouagadougou, avec pour objectif de couvrir l'ensemble des quartiers de la capitale et de rapprocher le cinéma du plus grand nombre.",
+            ],
         ];
 
         foreach ($articles as $data) {

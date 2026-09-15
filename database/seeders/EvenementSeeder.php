@@ -17,6 +17,7 @@ class EvenementSeeder extends Seeder
         $cineBurkina = Lieu::where('nom', 'Ciné Burkina')->first();
         $petitMelies = Lieu::where('nom', 'Petit Méliès — Institut Français')->first();
         $centreYennenga = Lieu::where('nom', 'Centre culturel du Faso Yennenga (ex CanalOlympia)')->first();
+        $centreIdrissa = Lieu::where('nom', 'Centre culturel du Faso Idrissa Ouédraogo (ex CanalOlympia)')->first();
         $cineNeerwaya = Lieu::where('nom', 'Ciné Neerwaya')->first();
         $chapiteauFespaco = Lieu::where('nom', 'Chapiteau FESPACO — Place de la Nation')->first();
 
@@ -77,6 +78,42 @@ class EvenementSeeder extends Seeder
                 'festival_id' => null,
                 'est_fespaco' => false,
             ],
+            [
+                'titre' => 'Ciné-club : Xala, projection-débat',
+                'description' => "Projection du classique d'Ousmane Sembène suivie d'un débat sur la satire politique dans le cinéma africain.",
+                'type' => 'debat',
+                'date_heure' => now()->addDays(10)->setTime(18, 30),
+                'lieu_id' => $petitMelies?->id,
+                'festival_id' => null,
+                'est_fespaco' => false,
+            ],
+            [
+                'titre' => 'Avant-première : Vaiana 2',
+                'description' => "Séance spéciale en famille pour découvrir la suite très attendue, en avant-première.",
+                'type' => 'avant_premiere',
+                'date_heure' => now()->addDays(25)->setTime(15, 0),
+                'lieu_id' => $centreIdrissa?->id,
+                'festival_id' => null,
+                'est_fespaco' => false,
+            ],
+            [
+                'titre' => 'Rencontre avec Fanta Régina Nacro',
+                'description' => "La réalisatrice pionnière du cinéma burkinabè échange avec le public autour de son parcours et de ses œuvres.",
+                'type' => 'debat',
+                'date_heure' => now()->addDays(46)->setTime(17, 30),
+                'lieu_id' => $cineBurkina?->id,
+                'festival_id' => null,
+                'est_fespaco' => false,
+            ],
+            [
+                'titre' => 'Projection spéciale : Hommage à Ousmane Sembène',
+                'description' => "Soirée hommage au père du cinéma africain, avec la projection de Moolaadé et Xala.",
+                'type' => 'projection_speciale',
+                'date_heure' => now()->addDays(58)->setTime(19, 0),
+                'lieu_id' => $cineNeerwaya?->id,
+                'festival_id' => null,
+                'est_fespaco' => false,
+            ],
         ];
 
         foreach ($evenements as $data) {
@@ -85,7 +122,7 @@ class EvenementSeeder extends Seeder
             }
 
             Evenement::updateOrCreate(
-                ['titre' => $data['titre'], 'date_heure' => $data['date_heure']],
+                ['titre' => $data['titre']],
                 $data
             );
         }

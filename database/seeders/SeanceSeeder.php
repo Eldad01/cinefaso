@@ -25,7 +25,7 @@ class SeanceSeeder extends Seeder
         $heures = ['15:00', '18:00', '20:30'];
         $versions = ['VF', 'VOSTFR', 'VO'];
 
-        for ($jour = 0; $jour < 7; $jour++) {
+        for ($jour = 0; $jour < 14; $jour++) {
             $date = now()->addDays($jour)->startOfDay();
 
             foreach ($lieuxPermanents as $lieuIndex => $lieu) {
