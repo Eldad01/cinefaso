@@ -4,12 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EvenementAdminController;
 use App\Http\Controllers\Admin\LieuAdminController;
 use App\Http\Controllers\Admin\SeanceAdminController;
-use App\Http\Controllers\SuperAdmin\ArticleController;
-use App\Http\Controllers\SuperAdmin\FestivalSuperAdminController;
-use App\Http\Controllers\SuperAdmin\FilmSuperAdminController;
-use App\Http\Controllers\SuperAdmin\LieuSuperAdminController;
-use App\Http\Controllers\SuperAdmin\StatsController;
-use App\Http\Controllers\SuperAdmin\UserSuperAdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\AgendaController;
 use App\Http\Controllers\Public\DecouvrirController;
 use App\Http\Controllers\Public\EvenementController;
@@ -18,7 +13,13 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LieuController;
 use App\Http\Controllers\Public\RappelController;
 use App\Http\Controllers\Public\SeanceController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperAdmin\ArticleController;
+use App\Http\Controllers\SuperAdmin\FestivalSuperAdminController;
+use App\Http\Controllers\SuperAdmin\FilmSuperAdminController;
+use App\Http\Controllers\SuperAdmin\LieuSuperAdminController;
+use App\Http\Controllers\SuperAdmin\SponsorController;
+use App\Http\Controllers\SuperAdmin\StatsController;
+use App\Http\Controllers\SuperAdmin\UserSuperAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -72,6 +73,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('superadmin')->name('superadmi
     Route::resource('festivals', FestivalSuperAdminController::class)->except(['show']);
 
     Route::resource('editorial', ArticleController::class)->except(['show']);
+
+    Route::patch('/sponsors/{sponsor}/toggle', [SponsorController::class, 'toggle'])->name('sponsors.toggle');
+    Route::resource('sponsors', SponsorController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';

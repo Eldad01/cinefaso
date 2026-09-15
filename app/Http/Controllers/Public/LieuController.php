@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Festival;
 use App\Models\Lieu;
+use App\Models\Sponsor;
 use Illuminate\View\View;
 
 class LieuController extends Controller
@@ -76,12 +77,15 @@ class LieuController extends Controller
             ->sortBy(fn ($p) => $p['film']->titre)
             ->values();
 
+        $sponsors = Sponsor::where('actif', true)->orderBy('ordre')->orderBy('nom')->get();
+
         return view('public.lieu', [
             'lieu' => $lieu,
             'seancesDuSoir' => $seancesDuSoir,
             'prochainsEvenements' => $prochainsEvenements,
             'jours' => $jours,
             'programme' => $programme,
+            'sponsors' => $sponsors,
         ]);
     }
 }

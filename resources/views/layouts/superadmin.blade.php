@@ -26,6 +26,7 @@
                 ['label' => 'Utilisateurs', 'icon' => 'ti-users', 'route' => 'superadmin.users.index'],
                 ['label' => 'Festivals', 'icon' => 'ti-star', 'route' => 'superadmin.festivals.index'],
                 ['label' => 'Éditorial', 'icon' => 'ti-news', 'route' => 'superadmin.editorial.index'],
+                ['label' => 'Sponsors', 'icon' => 'ti-heart-handshake', 'route' => 'superadmin.sponsors.index'],
             ];
         @endphp
 

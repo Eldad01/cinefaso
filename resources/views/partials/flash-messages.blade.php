@@ -27,6 +27,11 @@
         'article-cree' => 'Article créé avec succès.',
         'article-modifie' => 'Article modifié avec succès.',
         'article-supprime' => 'Article supprimé.',
+        'sponsor-cree' => 'Sponsor créé avec succès.',
+        'sponsor-modifie' => 'Sponsor modifié avec succès.',
+        'sponsor-supprime' => 'Sponsor supprimé.',
+        'sponsor-active' => 'Sponsor affiché sur le site.',
+        'sponsor-desactive' => 'Sponsor masqué du site.',
     ];
 
     $status = session('status');

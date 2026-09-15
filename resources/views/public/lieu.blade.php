@@ -167,15 +167,17 @@
                 </div>
             @endif
 
-            {{-- Partenaires (à venir) --}}
-            <div class="px-5 py-6 border-t border-cf-line">
-                <p class="text-center text-[11px] uppercase tracking-widest text-cf-faint mb-4">Nos partenaires</p>
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    @for ($i = 0; $i < 5; $i++)
-                        <div class="h-14 w-14 rounded-full border-2 border-dashed border-cf-line bg-cf-surface-2"></div>
-                    @endfor
+            {{-- Partenaires --}}
+            @if ($sponsors->isNotEmpty())
+                <div class="px-5 py-6 border-t border-cf-line">
+                    <p class="text-center text-[11px] uppercase tracking-widest text-cf-faint mb-4">Nos partenaires</p>
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        @foreach ($sponsors as $sponsor)
+                            <x-sponsor-badge :sponsor="$sponsor" />
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 
