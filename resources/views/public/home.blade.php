@@ -52,7 +52,7 @@
         <h1 class="mt-3 font-display text-4xl sm:text-6xl font-extrabold text-cf-ink max-w-xl">Ce soir à Ouagadougou</h1>
         <p class="mt-4 text-base sm:text-lg text-cf-muted max-w-md">
             {{ $seancesDuJour->count() }} séance{{ $seancesDuJour->count() > 1 ? 's' : '' }}
-            au programme dans {{ $lieuxActifs->where('seances_count', '>', 0)->count() }} lieux
+            au programme dans {{ $lieuxActifs->where('seances_count', '>', 0)->count() }} cinémas
         </p>
         <a href="{{ Route::has('ce-soir') ? route('ce-soir') : '#' }}"
            class="mt-8 inline-flex items-center gap-2 rounded-lg bg-cf-gold text-cf-gold-ink font-semibold px-6 py-3 hover:bg-cf-gold-strong transition">
@@ -107,10 +107,10 @@
 
     {{-- Les lieux --}}
     <section>
-        <x-section-title title="Les salles" subtitle="Cinémas et lieux partenaires à Ouagadougou">
+        <x-section-title title="Les cinémas" subtitle="Cinémas partenaires à Ouagadougou">
             <x-slot name="actions">
                 <a href="{{ Route::has('lieux.index') ? route('lieux.index') : '#' }}" class="text-sm font-medium text-cf-gold hover:text-cf-gold-strong">
-                    Tous les lieux <i class="ti ti-arrow-right"></i>
+                    Tous les cinémas <i class="ti ti-arrow-right"></i>
                 </a>
             </x-slot>
         </x-section-title>

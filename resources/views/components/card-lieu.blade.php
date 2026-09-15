@@ -21,7 +21,7 @@
         </p>
         <div class="mt-2 flex flex-wrap items-center gap-2">
             @if ($lieu->type === 'lieu_temporaire')
-                <span class="inline-flex items-center rounded-md bg-cf-surface-2 px-2 py-1 text-[11px] font-medium text-cf-muted">Lieu temporaire</span>
+                <span class="inline-flex items-center rounded-md bg-cf-surface-2 px-2 py-1 text-[11px] font-medium text-cf-muted">Site temporaire</span>
             @endif
             @if (! is_null($filmsCount))
                 <span class="text-xs text-cf-faint">{{ $filmsCount }} film{{ $filmsCount > 1 ? 's' : '' }} ce soir</span>

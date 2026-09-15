@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Ma salle')
+@section('page-title', 'Mon cinéma')
 
 @section('content')
     <div class="max-w-xl">

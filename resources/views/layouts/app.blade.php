@@ -27,7 +27,7 @@
             $navLinks = [
                 ['label' => 'Accueil', 'route' => 'home', 'fallback' => '/', 'match' => 'home'],
                 ['label' => 'Ce soir', 'route' => 'ce-soir', 'match' => 'ce-soir'],
-                ['label' => 'Les lieux', 'route' => 'lieux.index', 'match' => 'lieux.*'],
+                ['label' => 'Cinémas', 'route' => 'lieux.index', 'match' => 'lieux.*'],
                 ['label' => 'Découvrir', 'route' => 'decouvrir', 'match' => 'decouvrir'],
                 ['label' => 'Agenda', 'route' => 'agenda', 'match' => 'agenda'],
             ];

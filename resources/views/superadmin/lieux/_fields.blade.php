@@ -13,7 +13,7 @@
         <label for="type" class="block text-sm font-medium text-cf-muted mb-1">Type</label>
         <select name="type" id="type" required class="w-full rounded-lg border-cf-line text-sm focus:border-cf-gold focus:ring-cf-gold">
             <option value="salle_permanente" @selected(old('type', $lieu?->type ?? 'salle_permanente') === 'salle_permanente')>Salle permanente</option>
-            <option value="lieu_temporaire" @selected(old('type', $lieu?->type) === 'lieu_temporaire')>Lieu temporaire</option>
+            <option value="lieu_temporaire" @selected(old('type', $lieu?->type) === 'lieu_temporaire')>Site temporaire</option>
         </select>
     </div>
 </div>
@@ -77,7 +77,7 @@
 </div>
 
 <div class="mt-4">
-    <label for="festival_id" class="block text-sm font-medium text-cf-muted mb-1">Festival associé <span class="text-cf-faint">(pour un lieu temporaire)</span></label>
+    <label for="festival_id" class="block text-sm font-medium text-cf-muted mb-1">Festival associé <span class="text-cf-faint">(pour un site temporaire)</span></label>
     <select name="festival_id" id="festival_id" class="w-full rounded-lg border-cf-line text-sm focus:border-cf-gold focus:ring-cf-gold">
         <option value="">Aucun</option>
         @foreach ($festivals as $festival)
@@ -92,5 +92,5 @@
     <input type="checkbox" name="partenaire" id="partenaire" value="1"
            @checked(old('partenaire', $lieu?->partenaire ?? true))
            class="rounded border-cf-line text-cf-gold focus:ring-cf-gold">
-    <label for="partenaire" class="text-sm text-cf-muted">Lieu partenaire</label>
+    <label for="partenaire" class="text-sm text-cf-muted">Cinéma partenaire</label>
 </div>

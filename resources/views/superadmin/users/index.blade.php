@@ -42,7 +42,7 @@
                     <tr>
                         <th class="px-5 py-3 text-left">Nom</th>
                         <th class="px-5 py-3 text-left">Email</th>
-                        <th class="px-5 py-3 text-left">Lieu</th>
+                        <th class="px-5 py-3 text-left">Cinéma</th>
                         <th class="px-5 py-3 text-left">Statut</th>
                         <th class="px-5 py-3 text-right">Actions</th>
                     </tr>

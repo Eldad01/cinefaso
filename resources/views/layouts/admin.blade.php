@@ -23,7 +23,7 @@
                 ['label' => 'Tableau de bord', 'icon' => 'ti-layout-dashboard', 'route' => 'admin.dashboard'],
                 ['label' => 'Séances', 'icon' => 'ti-clock', 'route' => 'admin.seances.index'],
                 ['label' => 'Événements', 'icon' => 'ti-calendar-event', 'route' => 'admin.evenements.index'],
-                ['label' => 'Ma salle', 'icon' => 'ti-building', 'route' => 'admin.lieu.edit'],
+                ['label' => 'Mon cinéma', 'icon' => 'ti-building', 'route' => 'admin.lieu.edit'],
             ];
         @endphp
 

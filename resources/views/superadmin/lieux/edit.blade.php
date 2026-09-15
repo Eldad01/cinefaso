@@ -1,6 +1,6 @@
 @extends('layouts.superadmin')
 
-@section('page-title', 'Modifier le lieu')
+@section('page-title', 'Modifier le cinéma')
 
 @section('content')
     <div class="max-w-2xl">

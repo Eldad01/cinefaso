@@ -117,7 +117,7 @@
         {{-- Sidebar --}}
         <aside class="hidden lg:block">
             <div class="rounded-xl border border-cf-line bg-cf-surface p-5 sticky top-24">
-                <h3 class="font-semibold text-cf-ink mb-3">Lieux actifs ce soir</h3>
+                <h3 class="font-semibold text-cf-ink mb-3">Cinémas actifs ce soir</h3>
                 <ul class="space-y-2">
                     @forelse ($lieuxDuSoir as $lieu)
                         <li>
@@ -127,7 +127,7 @@
                             </a>
                         </li>
                     @empty
-                        <li class="text-sm text-cf-faint">Aucun lieu actif ce soir.</li>
+                        <li class="text-sm text-cf-faint">Aucun cinéma actif ce soir.</li>
                     @endforelse
                 </ul>
             </div>

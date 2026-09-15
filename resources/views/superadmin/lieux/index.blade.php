@@ -1,12 +1,12 @@
 @extends('layouts.superadmin')
 
-@section('page-title', 'Lieux')
+@section('page-title', 'Cinémas')
 
 @section('content')
     <div class="flex items-center justify-between gap-4 mb-6">
         <a href="{{ route('superadmin.lieux.create') }}"
            class="inline-flex items-center gap-2 rounded-lg bg-cf-gold text-cf-gold-ink px-4 py-2.5 text-sm font-semibold hover:bg-cf-gold-strong transition">
-            <i class="ti ti-plus"></i> Nouveau lieu
+            <i class="ti ti-plus"></i> Nouveau cinéma
         </a>
     </div>
 

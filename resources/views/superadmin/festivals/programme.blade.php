@@ -23,7 +23,7 @@
                     <thead class="bg-cf-surface-2 text-cf-muted text-xs uppercase sticky top-0">
                         <tr>
                             <th class="px-5 py-3 text-left">Film</th>
-                            <th class="px-5 py-3 text-left">Lieu</th>
+                            <th class="px-5 py-3 text-left">Cinéma</th>
                             <th class="px-5 py-3 text-left">Catégorie</th>
                             <th class="px-5 py-3 text-left">Date &amp; heure</th>
                         </tr>
@@ -55,7 +55,7 @@
                     <thead>
                         <tr class="text-xs text-cf-muted uppercase">
                             <th class="text-left px-2">Film</th>
-                            <th class="text-left px-2">Lieu</th>
+                            <th class="text-left px-2">Cinéma</th>
                             <th class="text-left px-2">Catégorie</th>
                             <th class="text-left px-2">Version</th>
                             <th class="text-left px-2">Tarif</th>
@@ -93,7 +93,7 @@
         </td>
         <td class="px-2 py-1 min-w-[160px]">
             <select name="__ROWNAME__[lieu_id]" required class="w-full rounded-lg border-cf-line text-xs focus:border-cf-gold focus:ring-cf-gold">
-                <option value="">Lieu…</option>
+                <option value="">Cinéma…</option>
                 @foreach ($lieuxParticipants as $lieu)
                     <option value="{{ $lieu->id }}">{{ $lieu->nom }}</option>
                 @endforeach

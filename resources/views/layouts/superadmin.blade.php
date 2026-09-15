@@ -21,7 +21,7 @@
         @php
             $superAdminLinks = [
                 ['label' => 'Tableau de bord', 'icon' => 'ti-layout-dashboard', 'route' => 'superadmin.dashboard'],
-                ['label' => 'Lieux', 'icon' => 'ti-building', 'route' => 'superadmin.lieux.index'],
+                ['label' => 'Cinémas', 'icon' => 'ti-building', 'route' => 'superadmin.lieux.index'],
                 ['label' => 'Films', 'icon' => 'ti-movie', 'route' => 'superadmin.films.index'],
                 ['label' => 'Utilisateurs', 'icon' => 'ti-users', 'route' => 'superadmin.users.index'],
                 ['label' => 'Festivals', 'icon' => 'ti-star', 'route' => 'superadmin.festivals.index'],

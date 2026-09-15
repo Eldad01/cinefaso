@@ -82,7 +82,7 @@
 
     @if ($evenement->lieu)
         <div class="mt-8 rounded-xl border border-cf-line bg-cf-surface p-5">
-            <h2 class="font-display font-bold text-cf-ink mb-3">Lieu</h2>
+            <h2 class="font-display font-bold text-cf-ink mb-3">Cinéma</h2>
             <div class="flex items-start justify-between gap-4">
                 <div>
                     <p class="font-semibold text-cf-ink">{{ $evenement->lieu->nom }}</p>
@@ -92,7 +92,7 @@
                 </div>
                 <a href="{{ route('lieux.show', $evenement->lieu) }}"
                    class="shrink-0 inline-flex items-center gap-1 rounded-lg border border-cf-line px-3 py-2 text-sm font-semibold text-cf-ink hover:border-cf-gold/50 transition">
-                    Voir la salle <i class="ti ti-arrow-right"></i>
+                    Voir le cinéma <i class="ti ti-arrow-right"></i>
                 </a>
             </div>
         </div>

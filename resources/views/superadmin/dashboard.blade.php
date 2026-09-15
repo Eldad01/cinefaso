@@ -17,7 +17,7 @@
 
     <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         <div class="rounded-xl border border-cf-line bg-cf-surface p-5">
-            <p class="text-xs text-cf-faint uppercase font-medium">Lieux actifs</p>
+            <p class="text-xs text-cf-faint uppercase font-medium">Cinémas actifs</p>
             <p class="mt-1 text-3xl font-bold text-cf-ink">{{ $lieuxActifsCount }}</p>
         </div>
         <div class="rounded-xl border border-cf-line bg-cf-surface p-5">
@@ -41,10 +41,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="rounded-xl border border-cf-line bg-cf-surface overflow-hidden">
             <div class="px-5 py-4 border-b border-cf-line">
-                <h2 class="font-semibold text-cf-ink">Lieux les plus actifs</h2>
+                <h2 class="font-semibold text-cf-ink">Cinémas les plus actifs</h2>
             </div>
             @if ($lieuxPlusActifs->isEmpty())
-                <p class="p-5 text-cf-muted text-sm">Aucun lieu pour le moment.</p>
+                <p class="p-5 text-cf-muted text-sm">Aucun cinéma pour le moment.</p>
             @else
                 <ul class="divide-y divide-cf-line">
                     @foreach ($lieuxPlusActifs as $lieu)

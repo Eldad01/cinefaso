@@ -28,7 +28,7 @@
                 </div>
 
                 <div>
-                    <label for="lieu_id" class="block text-sm font-medium text-cf-muted mb-1">Lieu associé</label>
+                    <label for="lieu_id" class="block text-sm font-medium text-cf-muted mb-1">Cinéma associé</label>
                     <select name="lieu_id" id="lieu_id" required class="w-full rounded-lg border-cf-line text-sm focus:border-cf-gold focus:ring-cf-gold">
                         @foreach ($lieux as $lieu)
                             <option value="{{ $lieu->id }}" @selected(old('lieu_id', $user->lieu_id) == $lieu->id)>{{ $lieu->nom }}</option>
