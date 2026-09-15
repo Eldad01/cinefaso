@@ -82,15 +82,22 @@
            class="w-full text-sm text-cf-muted file:mr-3 file:rounded-lg file:border-0 file:bg-cf-surface-2 file:px-4 file:py-2 file:text-cf-gold file:font-medium hover:file:bg-cf-surface-2">
 </div>
 
-<div class="mt-4 flex items-center gap-6">
-    <label class="flex items-center gap-2 text-sm text-cf-muted">
-        <input type="checkbox" name="est_africain" value="1" @checked(old('est_africain', $film?->est_africain))
-               class="rounded border-cf-line text-cf-gold focus:ring-cf-gold">
-        Film africain
-    </label>
-    <label class="flex items-center gap-2 text-sm text-cf-muted">
-        <input type="checkbox" name="est_burkinabe" value="1" @checked(old('est_burkinabe', $film?->est_burkinabe))
-               class="rounded border-cf-line text-cf-gold focus:ring-cf-gold">
-        Film burkinabè
-    </label>
+<div class="mt-4">
+    <p class="text-sm font-medium text-cf-muted mb-1">Mise en avant <span class="text-cf-faint">(optionnel)</span></p>
+    <p class="text-xs text-cf-faint mb-2">
+        Le pays du film est déjà défini ci-dessus (Europe, Amérique, Asie…). Cochez seulement si vous voulez
+        aussi le mettre en avant dans la rubrique « Découvrir » — un film ne cochant rien reste un film valide.
+    </p>
+    <div class="flex items-center gap-6">
+        <label class="flex items-center gap-2 text-sm text-cf-muted">
+            <input type="checkbox" name="est_africain" value="1" @checked(old('est_africain', $film?->est_africain))
+                   class="rounded border-cf-line text-cf-gold focus:ring-cf-gold">
+            Mettre en avant comme film africain
+        </label>
+        <label class="flex items-center gap-2 text-sm text-cf-muted">
+            <input type="checkbox" name="est_burkinabe" value="1" @checked(old('est_burkinabe', $film?->est_burkinabe))
+                   class="rounded border-cf-line text-cf-gold focus:ring-cf-gold">
+            Mettre en avant comme film burkinabè
+        </label>
+    </div>
 </div>
